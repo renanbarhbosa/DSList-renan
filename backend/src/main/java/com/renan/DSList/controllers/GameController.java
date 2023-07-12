@@ -1,5 +1,6 @@
 package com.renan.DSList.controllers;
 
+import com.renan.DSList.dtos.GameDTO;
 import com.renan.DSList.dtos.GameMinDTO;
 import com.renan.DSList.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ public class GameController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<GameMinDTO> findById(@PathVariable Long id) {
-        GameMinDTO obj = gameService.findById(id);
-        return ResponseEntity.ok().body(obj);
+    public GameDTO findById(@PathVariable Long id) {
+        GameDTO result = gameService.findById(id);
+        return result;
     }
 
     @PostMapping

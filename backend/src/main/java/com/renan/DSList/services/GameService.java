@@ -1,17 +1,14 @@
 package com.renan.DSList.services;
 
+import com.renan.DSList.dtos.GameDTO;
 import com.renan.DSList.dtos.GameMinDTO;
 import com.renan.DSList.entities.Game;
 import com.renan.DSList.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,10 +24,9 @@ public class GameService {
     }
 
     @Transactional(readOnly = true)
-    public GameMinDTO findById(Long id) {
-        Optional<Game> obj = gameRepository.findById(id);
-        Game entity = obj.orElseThrow(() -> new IllegalArgumentException("Not found."));
-        return new GameMinDTO(entity);
+    public GameDTO findById(Long id) {
+        Game result = gameRepository.findById(id).get();
+        return new GameDTO(result);
     }
 
     @Transactional
