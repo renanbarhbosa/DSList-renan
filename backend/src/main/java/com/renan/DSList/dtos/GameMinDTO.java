@@ -1,6 +1,7 @@
 package com.renan.DSList.dtos;
 
 import com.renan.DSList.entities.Game;
+import com.renan.DSList.projections.GameMinProjection;
 
 public class GameMinDTO {
 
@@ -22,6 +23,14 @@ public class GameMinDTO {
     }
 
     public GameMinDTO(Game entity) {
+        id = entity.getId();
+        title = entity.getTitle();
+        year = entity.getYear();
+        imgUrl = entity.getImgUrl();
+        shortDescription = entity.getShortDescription();
+    }
+
+    public GameMinDTO(GameMinProjection entity) {
         id = entity.getId();
         title = entity.getTitle();
         year = entity.getYear();
